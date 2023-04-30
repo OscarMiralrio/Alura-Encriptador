@@ -3,7 +3,7 @@ let encryptBtn = document.querySelector(".button__encrypt");
 let decryptBtn = document.querySelector(".button__decrypt");
 let copyBtn = document.querySelector(".button__copy");
 let txtArea = document.querySelector(".text_encrypt");
-let textEncrypt =  document.querySelector(".text_encrypt");
+let textEncrypt = document.querySelector(".text_encrypt");
 let noMsgEncrypt = document.querySelector(".no_encrypt");
 let msgEncrypt = document.querySelector(".encrypt");
 
@@ -12,12 +12,12 @@ let msgEncrypt = document.querySelector(".encrypt");
  * @param {String} text es el texto a encriptar
  * @returns {String} Regresa el texto encriptado.
  */
-function encrypt(text){
+function encrypt(text) {
     let txtEncrypt = text.replaceAll('e', 'enter')
-    .replaceAll('i', 'imes')
-    .replaceAll('a', 'ai')
-    .replaceAll('o', 'ober')
-    .replaceAll('u', 'ufat');
+        .replaceAll('i', 'imes')
+        .replaceAll('a', 'ai')
+        .replaceAll('o', 'ober')
+        .replaceAll('u', 'ufat');
     return txtEncrypt;
 }
 
@@ -26,12 +26,12 @@ function encrypt(text){
  * @param {String} text es el texto a desencriptar
  * @returns {String} Regresa el texto desencriptado.
  */
-function decrypt(text){
+function decrypt(text) {
     let txtEncrypt = text.replaceAll('enter', 'e')
-    .replaceAll('imes', 'i')
-    .replaceAll('ai', 'a')
-    .replaceAll('ober', 'o')
-    .replaceAll('ufat', 'u');
+        .replaceAll('imes', 'i')
+        .replaceAll('ai', 'a')
+        .replaceAll('ober', 'o')
+        .replaceAll('ufat', 'u');
     return txtEncrypt;
 }
 
@@ -50,7 +50,7 @@ function ajustarTextArea(textarea) {
  * @param {*} noMsgEncrypt 
  * @param {*} msgEncrypt 
  */
-function msjEncrypt(noMsgEncrypt, msgEncrypt){
+function msjEncrypt(noMsgEncrypt, msgEncrypt) {
     noMsgEncrypt.style.display = "none";
     msgEncrypt.style.display = "flex";
 }
@@ -58,20 +58,24 @@ function msjEncrypt(noMsgEncrypt, msgEncrypt){
 /**
  * Es el evento del boton > Encriptar <
  */
-encryptBtn.addEventListener("click", function(){
+encryptBtn.addEventListener("click", function () {
     let txtToEncrypt = document.querySelector(".text");
     let txtEncrypt = encrypt(txtToEncrypt.value);
+    txtToEncrypt.value = "";
     msjEncrypt(noMsgEncrypt, msgEncrypt);
     textEncrypt.value = txtEncrypt;
-    ajustarTextArea(txtArea);
+    if ((screen.width) <= 768) {
+        ajustarTextArea(txtArea);
+    }
 });
 
 /**
  * Es el evento del boton > Desencriptar <
  */
-decryptBtn.addEventListener("click", function(){
+decryptBtn.addEventListener("click", function () {
     let txtToDencrypt = document.querySelector(".text");
     let txtDecrypt = decrypt(txtToDencrypt.value);
+    txtToDencrypt.value = "";
     msjEncrypt(noMsgEncrypt, msgEncrypt);
     textEncrypt.value = txtDecrypt;
     ajustarTextArea(txtArea);
@@ -80,8 +84,7 @@ decryptBtn.addEventListener("click", function(){
 /**
  * Evento para copiar el texto en el portapales
  */
-copyBtn.addEventListener("click", function(){
+copyBtn.addEventListener("click", function () {
     navigator.clipboard.writeText(textEncrypt.value);
-    alert("Texto Copiado")
 })
 
