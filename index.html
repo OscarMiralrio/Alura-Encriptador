@@ -7,11 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
     <title>Encriptador de texto - Alura Challenges ONE</title>
 </head>
 
 <body>
-    
+    <main class="conteiner">
+        <div class="conteiner__logo">
+            
+                <img src="img/Vector.svg" alt="logo de Alura" srcset="">
+            
+        </div>
+        <div class="conteiner__encrypt">
+            <div class="encrypt__message">
+                <textarea name="" id="" placeholder="Ingresa el texto aqui"></textarea>
+                <div class="bottom">
+                    <small><img src="img/Vector_2.svg" alt="" srcset="">Solo letras minúsculas y sin acentos.</small>
+                    <div class="buttons">
+                        <button class="button button__encrypt">Encriptar</button>
+                        <button class="button button__decrypt">Desencriptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="conteiner__message">
+            <div class="message">
+                <div class="no_encrypt">
+                    <img class="munieco" src="img/Munieco.svg" alt="no mesaage">
+                    <h2>Ningun mensaje fue encontrado</h2>
+                    <p>Ingresa el texto que deseas encriptar o desencriptar</p>
+                </div>
+                <div class="encrypt">
+                    <textarea>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quisquam minus beatae aliquid
+                        cum, ea sunt fuga unde nam. Lorem ipsum dolor sit amet consectetur, adipisicing elit.</textarea>
+                    <button class="button button__copy">Copiar</button>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 <script src="js/script.js"></script>
 
