@@ -117,6 +117,7 @@ textarea:focus{ outline: none; }
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    width: 100%;
 }
 
 .conteiner__message 
@@ -182,11 +183,6 @@ textarea:focus{ outline: none; }
     .conteiner__message .message{
         height: 1%;
         margin-bottom: 5vh;
-    }
-    .conteiner__message 
-    .message .encrypt{
-        width: 100%;
-        height: 30vh;
     }
     .button__copy {
         margin-bottom: 0.3rem;
