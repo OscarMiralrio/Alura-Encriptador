@@ -86,5 +86,6 @@ decryptBtn.addEventListener("click", function () {
  */
 copyBtn.addEventListener("click", function () {
     navigator.clipboard.writeText(textEncrypt.value);
+    window.alert("Texto Copiado :D");
 })
 
