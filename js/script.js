@@ -4,6 +4,7 @@ let decryptBtn = document.querySelector(".button__decrypt");
 let copyBtn = document.querySelector(".button__copy");
 let txtArea = document.querySelector(".text_encrypt");
 let textEncrypt = document.querySelector(".text_encrypt");
+let textToConvert = document.querySelector(".text");
 let noMsgEncrypt = document.querySelector(".no_encrypt");
 let msgEncrypt = document.querySelector(".encrypt");
 
@@ -56,16 +57,36 @@ function msjEncrypt(noMsgEncrypt, msgEncrypt) {
 }
 
 /**
+ * Función que verfica si el textarea esta vacia o no
+ * @returns {boolean} retorna verdadero o falso si el valor esta vacío
+ */
+function isEmpty() {
+    if (textToConvert.value == "") {
+        window.alert("Por favor ingresa el texto que deseas encriptar o desencripta \n (⌒‐⌒)");
+        location.reload();
+        return true;
+    }
+    return false;
+}
+
+function textConvert(texto) {
+    let textMin = texto.toLowerCase();
+    let txtSinAcentos = textMin.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return txtSinAcentos;
+}
+
+/**
  * Es el evento del boton > Encriptar <
  */
 encryptBtn.addEventListener("click", function () {
-    let txtToEncrypt = document.querySelector(".text");
-    let txtEncrypt = encrypt(txtToEncrypt.value);
-    txtToEncrypt.value = "";
-    msjEncrypt(noMsgEncrypt, msgEncrypt);
-    textEncrypt.value = txtEncrypt;
-    if ((screen.width) <= 768) {
-        ajustarTextArea(txtArea);
+    if (!isEmpty()) {
+        let txtEncrypt = encrypt(textConvert(textToConvert.value));
+        textToConvert.value = "";
+        msjEncrypt(noMsgEncrypt, msgEncrypt);
+        textEncrypt.value = txtEncrypt;
+        if ((screen.width) <= 768) {
+            ajustarTextArea(txtArea);
+        }
     }
 });
 
@@ -73,12 +94,15 @@ encryptBtn.addEventListener("click", function () {
  * Es el evento del boton > Desencriptar <
  */
 decryptBtn.addEventListener("click", function () {
-    let txtToDencrypt = document.querySelector(".text");
-    let txtDecrypt = decrypt(txtToDencrypt.value);
-    txtToDencrypt.value = "";
-    msjEncrypt(noMsgEncrypt, msgEncrypt);
-    textEncrypt.value = txtDecrypt;
-    ajustarTextArea(txtArea);
+    if (!isEmpty()) {
+        let txtDecrypt = decrypt(textConvert(textToConvert.value));
+        textToConvert.value = "";
+        msjEncrypt(noMsgEncrypt, msgEncrypt);
+        textEncrypt.value = txtDecrypt;
+        if ((screen.width) <= 768) {
+            ajustarTextArea(txtArea);
+        }
+    }
 });
 
 /**
@@ -89,3 +113,8 @@ copyBtn.addEventListener("click", function () {
     window.alert("Texto Copiado :D");
 })
 
+window.addEventListener("resize", function (event) {
+    if ((window.innerWidth) <= 768) {
+        ajustarTextArea(txtArea);
+    }
+});
